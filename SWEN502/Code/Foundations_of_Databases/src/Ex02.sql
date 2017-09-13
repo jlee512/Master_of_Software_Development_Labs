@@ -36,5 +36,5 @@ SELECT Employee.EmpID, EmpName, Salary, DeptName FROM Employee JOIN Work ON Empl
 -- Write a query to calculate the 2% bonus for all the employees’ of Hardware
 -- department. This newly calculated column should be named as “Bonus from
 -- Hardware Dept.”. Provide a report the same as the table below.
-SELECT
+SELECT EmpName AS 'Name', Salary, Percent_Time, ROUND(Salary * Work.Percent_Time / 100 * 0.02, 2) AS 'Bonus from Hardware Dept.' FROM Employee JOIN Work ON Employee.EmpID == Work.EmpID JOIN Department ON Work.DeptID == Department.DeptID WHERE DeptName == 'Hardware';
 
