@@ -28,6 +28,7 @@ SELECT d.DeptName AS 'Department', ROUND(AVG(e.Salary),2) AS 'Average Salary of 
 -- department, budget, the manager, start date of the manager, and the end date
 -- of the manager. If the manager position of the department is vacant, only
 -- show the name of department and budget.
+SELECT d.DeptName AS 'Department Name', d.Budget AS 'Department Budget', e.EmpName AS 'Manager Name', m.FromDate AS 'Mgr Start', m.ToDate AS 'Mgr End' FROM Department as d, Employee as e, Manager as m WHERE e.EmpID == d.MgrEmpID AND d.MgrEmpID == m.EmpID GROUP BY d.DeptID;
 
 
 -- 6. Find employees whose last name starts with ‘W’ and work full-time for the
