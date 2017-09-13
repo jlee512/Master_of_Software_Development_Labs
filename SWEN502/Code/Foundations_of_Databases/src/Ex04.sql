@@ -28,9 +28,12 @@ SELECT d.DeptName AS 'Department', ROUND(AVG(e.Salary),2) AS 'Average Salary of 
 -- department, budget, the manager, start date of the manager, and the end date
 -- of the manager. If the manager position of the department is vacant, only
 -- show the name of department and budget.
-SELECT d.DeptName AS 'Department Name', d.Budget AS 'Department Budget', e.EmpName AS 'Manager Name', m.FromDate AS 'Mgr Start', m.ToDate AS 'Mgr End' FROM Department as d, Employee as e, Manager as m WHERE e.EmpID == d.MgrEmpID AND d.MgrEmpID == m.EmpID GROUP BY d.DeptID;
+SELECT d.DeptName AS 'Department Name', d.Budget AS 'Department Budget', e.EmpName AS 'Manager Name', m.FromDate AS 'Mgr Start', m.ToDate AS 'Mgr End' FROM Department as d, Employee as e, Manager as m WHERE e.EmpID == d.MgrEmpID AND d.MgrEmpID == m.EmpID GROUP BY d.DeptID
+UNION
+SELECT d.DeptName AS 'Department Name', d.Budget AS 'Department Budget', NULL AS 'Manager Name', NULL AS 'Mgr Start', NULL AS 'Mgr End' FROM Department as d WHERE d.MgrEmpID IS NULL GROUP BY d.DeptID ORDER BY "Department Name" ASC;
 
 
 -- 6. Find employees whose last name starts with ‘W’ and work full-time for the
 -- Operations department. Show employees’ name and department. Note: there
 -- are different ways of retrieving results. Use INNER JOIN for this question.
+SELECT e.EmpID as 'Employee ID', e.EmpName as 'Employee Name', d.DeptName as 'Department Name', w.Percent_Time AS 'Percent Time' FROM Employee as e, Department as d, Work as w WHERE w.EmpID == e.EmpID AND w.DeptID == d.DeptID AND d.DeptName == 'Operations' AND w.Percent_Time == 100 AND e.EmpName LIKE '% W%';
