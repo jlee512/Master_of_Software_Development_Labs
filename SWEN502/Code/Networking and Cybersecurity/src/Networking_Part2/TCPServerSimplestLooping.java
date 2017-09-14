@@ -32,7 +32,7 @@ public class TCPServerSimplestLooping {
         boolean looping = true;
         int i = 0;
 
-        while(looping) {
+        while(i < 9) {
 
             String message = in.readLine();
 
@@ -41,6 +41,8 @@ public class TCPServerSimplestLooping {
             }
 
             System.out.println(message);
+
+            i++;
 
         }
         worker.close();
