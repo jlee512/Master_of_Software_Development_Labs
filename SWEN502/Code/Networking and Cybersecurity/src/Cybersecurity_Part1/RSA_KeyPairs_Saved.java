@@ -42,7 +42,7 @@ public class RSA_KeyPairs_Saved {
             //Encrypt message
             byte[] encrypted_bytes = cipher.doFinal(message.getBytes());
             String encrypted = new String(encrypted_bytes);
-            
+
             System.out.println("Encrypted: " + encrypted);
 
             //Re-initialise cipher in decrypt mode
@@ -52,7 +52,6 @@ public class RSA_KeyPairs_Saved {
             String decrypted = new String(cipher.doFinal(encrypted_bytes));
 
             System.out.println("Decrypted: " + decrypted);
-
 
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
