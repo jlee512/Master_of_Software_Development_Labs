@@ -1,5 +1,8 @@
 package Cybersecurity_Part1;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
@@ -15,9 +18,18 @@ public class RSA_KeyPairs_Part03 {
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
             keyPairGenerator.initialize(1024);
             KeyPair keyPair = keyPairGenerator.generateKeyPair();
-            System.out.println("Public key: " + keyPair.getPublic());
-            System.out.println("Private key: " + keyPair.getPrivate());
+
+            FileOutputStream publickey_outputStream = new FileOutputStream("public_key");
+            FileOutputStream privatekey_outputStream = new FileOutputStream("private_key");
+
+            publickey_outputStream.write(keyPair.getPublic().getEncoded());
+            privatekey_outputStream.write(keyPair.getPrivate().getEncoded());
+
         } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
