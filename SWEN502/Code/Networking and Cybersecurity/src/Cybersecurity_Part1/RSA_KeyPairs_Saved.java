@@ -31,6 +31,9 @@ public class RSA_KeyPairs_Saved {
             PublicKey public_key = keyFactory.generatePublic(new X509EncodedKeySpec(public_key_bytes));
             PrivateKey privateKey = keyFactory.generatePrivate(new PKCS8EncodedKeySpec(private_key_bytes));
 
+            System.out.println(public_key);
+            System.out.println(privateKey);
+
             Cipher cipher = Cipher.getInstance("RSA");
             //Initialise cipher in encrypt mode
             cipher.init(Cipher.ENCRYPT_MODE, public_key);
